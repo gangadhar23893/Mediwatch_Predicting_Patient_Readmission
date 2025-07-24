@@ -1,0 +1,19 @@
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+python-dotenv
+pymongo
+certifi
+pymongo[srv]==3.12
+mlflow
+pyaml
+dagshub
+fastapi
+uvicorn
+python-multipart
+dill
+
+
+#-e .
