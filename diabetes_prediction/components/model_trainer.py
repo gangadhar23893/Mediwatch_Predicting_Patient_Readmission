@@ -24,6 +24,9 @@ from sklearn.ensemble import (
 from diabetes_prediction.utils.main_utils.utils import evaluate_models
 import mlflow
 
+import dagshub
+dagshub.init(repo_owner='gangadhar23893', repo_name='Mediwatch_Predicting_Patient_Readmission', mlflow=True)
+
 
 class ModelTrainer:
     def __init__(self,model_trainer_config : ModelTrainerConfig , data_transformation_artifact : DataTransformationArtifact):
@@ -43,7 +46,7 @@ class ModelTrainer:
             mlflow.log_metric("f1_score",f1_score)
             mlflow.log_metric("precision_score",precision_score)
             mlflow.log_metric("recall_score",recall_score)
-            mlflow.sklearn.log_model(best_model,"model")
+            #mlflow.sklearn.log_model(best_model,"model")
 
 
         
@@ -128,7 +131,9 @@ class ModelTrainer:
 
         network_model = NetworkModel(preprocessor=preprocessor,model=best_model)
 
-        save_object(self.model_trainer_config.trained_model_file_path,obj=NetworkModel)
+        save_object(self.model_trainer_config.trained_model_file_path,obj=network_model)
+
+        save_object("final_models/model.pkl", best_model)
 
         #Model Trainer Artifact
 

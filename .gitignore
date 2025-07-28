@@ -1,0 +1,8 @@
+venv
+.env
+Artifacts
+logs
+final_models
+prediction_output
+valid_data
+
